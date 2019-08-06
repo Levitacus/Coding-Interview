@@ -1,7 +1,7 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList(int numElements)
-{
+LinkedList::LinkedList(int numElements){
+	this->size = 0;
 	this->head = nullptr;
 
 	srand(time(0));
@@ -33,6 +33,7 @@ void LinkedList::append(int value) {
 		x->next = newNode;
 		newNode->prev = x;
 	}
+	this->size = (this->size)++;
 }
 /*
 void LinkedList::remove(int value) {
@@ -50,7 +51,10 @@ void LinkedList::remove(Node* key) {
 void LinkedList::data() {
 	Node* node = this->head;
 	while (node != nullptr) {
-		std::cout << node->value << ", ";
+		std::cout << node->value;
+		if (node->next != nullptr) {
+			std::cout << ", ";
+		}
 		node = node->next;
 	}
 	std::cout << "\n";
@@ -83,4 +87,28 @@ void LinkedList::dupRemove() {
 		}
 		slow = slow->next;
 	}
+}
+
+int LinkedList::kfromEnd(int k) {
+	//returns the value at the n-k position where n is the length of the linkedlist
+	//and k is an arbitrary number, k < n
+
+	if (k > this->size) {
+		return NULL;
+	}
+
+	Node* leading = this->head;
+	Node* trailing = this->head;
+
+	int count = 0;
+
+	while (count < k) {
+		leading = leading->next;
+		count++;
+	}
+	while (leading != nullptr) {
+		leading = leading->next;
+		trailing = trailing->next;
+	}
+	return trailing->value;
 }

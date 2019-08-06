@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 	functionMap funcs;
 
 	funcs.emplace("DupRemove", DupRemove::run);
-
+	funcs.emplace("KfromEnd", KfromEnd::run);
 
 	do
 	{

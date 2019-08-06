@@ -34,6 +34,8 @@ public:
 	void data();
 	void remove(Node* key);
 	void dupRemove();
+	int kfromEnd(int k);
 
 private:
+	int size;
 };

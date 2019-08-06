@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClInclude Include="Driver.h" />
     <ClInclude Include="DupRemove.h" />
+    <ClInclude Include="KfromEnd.h" />
     <ClInclude Include="LinkedList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="DupRemove.cpp" />
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="KfromEnd.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

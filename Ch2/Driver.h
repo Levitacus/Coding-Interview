@@ -7,6 +7,9 @@
 #ifndef LINKEDLIST_H
 #include "LinkedList.h"
 #endif // !LINKEDLIST_H
+#ifndef KFROMEND_H
+#include "KfromEnd.h"
+#endif
 
 
 #include <string>
