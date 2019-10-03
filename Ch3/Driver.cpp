@@ -10,8 +10,32 @@ void generateVals(ManyStacks *stacks) {
 		for (int j = 0; j < 5; j++) {
 			cout << "Pushing " << j << " to stack number " << i << "\n";
 			stacks->push(i, j);
-			//cout << stacks->pop(i) << "\n";
-			//cout << stacks->peek(i) << "\n";
+		}
+	}
+}
+
+void minStack() {
+	Stack stack = Stack();
+	createStack(&stack);
+}
+
+void createStack(Stack* stack) {
+	for (int i = 0; i < stack->getCapacity()+2; i++) {
+		try {
+			cout << "Pushing " << (5 - i) << " to the stack.\n";
+			cout << "Min = " << stack->getMin() << "\n";
+			stack->push(5 - i);
+		}
+		catch (exception e){
+			cout << e.what();
+		}
+	}
+	for (int j = 0; j < stack->getCapacity()+2; j++) {
+		try {
+			cout << "Popping " << stack->pop() << "\n";
+		}
+		catch (exception e) {
+			cout << e.what();
 		}
 	}
 }
@@ -23,6 +47,7 @@ int main(int argc, char* argv[])
 	functionMap funcs;
 
 	funcs.emplace("ManyStacks", threeStacks);
+	funcs.emplace("MinStack", minStack);
 
 	do
 	{
