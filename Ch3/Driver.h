@@ -3,6 +3,7 @@
 //includes
 #include "ManyStacks.h"
 #include "Stack.h"
+#include "Queue.h"
 
 #include <string>
 #include <iostream>

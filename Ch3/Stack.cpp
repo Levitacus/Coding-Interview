@@ -1,6 +1,6 @@
 #pragma once
 #include "Stack.h"
-
+/*
 class Stack::Node {
 public:
 	int value;
@@ -13,17 +13,17 @@ public:
 		this->next = next;
 	}
 };
-
+*/
 Stack::Stack(int capacity) {
 	top = nullptr;
 	this->capacity = capacity;
-	size = 0;
+	this->size = 0;
 }
 
 Stack::~Stack() {
 	while (top != nullptr) {
 		Node* np = top;
-		top = top->next;
+		top = top->getNext();
 		delete np;
 	}
 }
@@ -32,7 +32,7 @@ int Stack::getMin() {
 	if (isEmpty()) {
 		return NULL;
 	}
-	return top->min;
+	return top->getMin();
 }
 
 void Stack::push(int value) {
@@ -44,10 +44,10 @@ void Stack::push(int value) {
 			top = new Node(value, value, nullptr);
 		}
 		else {
-			Node* node = new Node(value, ((top->min < value) ? top->min : value), top);
+			Node* node = new Node(value, ((top->getMin() < value) ? top->getMin() : value), top);
 			top = node;
-			size += 1;
 		}
+		size += 1;
 	}
 }
 
@@ -57,15 +57,16 @@ int Stack::pop() {
 	}
 	else {
 		Node* node = top;
-		int val = node->value;
-		top = top->next;
+		int val = node->getValue();
+		top = top->getNext();
 		delete node;
+		size -= 1;
 		return val;
 	}
 }
 
 int Stack::peek() {
-	return top->value;
+	return top->getValue();
 }
 
 bool Stack::isEmpty() {
@@ -73,7 +74,7 @@ bool Stack::isEmpty() {
 }
 
 bool Stack::isFull() {
-	return (size +1 == capacity);
+	return (size == capacity);
 }
 
 int Stack::getCapacity() {

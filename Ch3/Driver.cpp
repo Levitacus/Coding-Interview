@@ -1,11 +1,6 @@
 #include "Driver.h"
 
-void threeStacks() {
-	ManyStacks stacks = ManyStacks();
-	generateVals(&stacks);
-}
-
-void generateVals(ManyStacks *stacks) {
+void generateVals(ManyStacks* stacks) {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 5; j++) {
 			cout << "Pushing " << j << " to stack number " << i << "\n";
@@ -14,23 +9,41 @@ void generateVals(ManyStacks *stacks) {
 	}
 }
 
-void minStack() {
-	Stack stack = Stack();
-	createStack(&stack);
-}
-
-void createStack(Stack* stack) {
-	for (int i = 0; i < stack->getCapacity()+2; i++) {
+void testQueue() {
+	Queue queue = Queue();
+	for (int i = 0; i < queue.getCapacity(); i++) {
 		try {
-			cout << "Pushing " << (5 - i) << " to the stack.\n";
-			cout << "Min = " << stack->getMin() << "\n";
-			stack->push(5 - i);
+			cout << "Queueing " << (5 - i) << " to the queue.\n";
+			queue.enqueue(5 - i);
+			cout << "Min = " << queue.getMin() << "\n";
 		}
-		catch (exception e){
+		catch (exception e) {
 			cout << e.what();
 		}
 	}
-	for (int j = 0; j < stack->getCapacity()+2; j++) {
+	for (int j = 0; j < queue.getCapacity(); j++) {
+		try {
+			cout << "dequeueing " << queue.dequeue() << "\n";
+		}
+		catch (exception e) {
+			cout << e.what();
+		}
+	}
+	
+}
+
+void testStack(Stack* stack) {
+	for (int i = 0; i < stack->getCapacity(); i++) {
+		try {
+			cout << "Pushing " << (5 - i) << " to the stack.\n";
+			stack->push(5 - i);
+			cout << "Min = " << stack->getMin() << "\n";
+		}
+		catch (exception e) {
+			cout << e.what();
+		}
+	}
+	for (int j = 0; j < stack->getCapacity(); j++) {
 		try {
 			cout << "Popping " << stack->pop() << "\n";
 		}
@@ -38,6 +51,16 @@ void createStack(Stack* stack) {
 			cout << e.what();
 		}
 	}
+}
+
+void minStack() {
+	Stack stack = Stack();
+	testStack(&stack);
+}
+
+void threeStacks() {
+	ManyStacks stacks = ManyStacks();
+	generateVals(&stacks);
 }
 
 int main(int argc, char* argv[])
@@ -48,6 +71,7 @@ int main(int argc, char* argv[])
 
 	funcs.emplace("ManyStacks", threeStacks);
 	funcs.emplace("MinStack", minStack);
+	funcs.emplace("Queue", testQueue);
 
 	do
 	{

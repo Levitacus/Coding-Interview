@@ -1,30 +1,29 @@
 #pragma once
+
 #include "Node.h"
 #include <iostream>
-#include <ctime>
 #include <cstdlib>
 using namespace std;
 
-class Stack {
-	//class Node;
+class Queue
+{
 private:
 	//member variables
-	Node* top;
+	Node *head, *tail;
 	int capacity;
 	int size;
+
 public:
 	//constructor and destructor
-	Stack(int capacity=5);
-	~Stack();
+	Queue(int capacity = 5);
+	~Queue();
 
 	//funcs
 	int getMin();
-	void push(int value);
-	int pop();
+	void enqueue(int value);
+	int dequeue();
 	int peek();
 	bool isEmpty();
 	bool isFull();
 	int getCapacity();
-
-
 };
